@@ -1,0 +1,166 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.headerActions {
+  display: flex;
+  gap: 15px;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, #0070f3, #0052cc);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 112, 243, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 112, 243, 0.4);
+}
+
+.tableCard {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  border: 1px solid #eaeaea;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.th, .td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.th {
+  background-color: #fafafa;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tr:hover .td {
+  background-color: #f9f9fa;
+}
+
+.tr:last-child .td {
+  border-bottom: none;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Status colors map */
+.SedangDikerjakan { background: #dbeafe; color: #1e40af; }
+.ApprovalKetuaTim { background: #fef3c7; color: #92400e; }
+.RejectKetuaTim { background: #fee2e2; color: #991b1b; }
+.ApprovalDalnis { background: #e0e7ff; color: #3730a3; }
+.RejectDalnis { background: #fce7f3; color: #9d174d; }
+.ApprovalSubkoor { background: #ede9fe; color: #5b21b6; }
+.RejectSubkoor { background: #ffedd5; color: #c2410c; }
+.ApprovalKoordinator { background: #dcfce7; color: #166534; }
+.RejectKoordinator { background: #fef08a; color: #854d0e; }
+.Completed { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+
+.actionBtn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.actionBtn:hover {
+  background-color: #e5e7eb;
+}
+
+/* Notes Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.modalTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #888;
+}
+
+.closeBtn:hover {
+  color: #333;
+}
