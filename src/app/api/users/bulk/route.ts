@@ -18,7 +18,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'CSV must contain headers and at least one row' }, { status: 400 });
     }
 
-    const headers = lines[0].split(',').map((h: string) => h.trim().toLowerCase());
+    // Detect delimiter (Excel often uses ; instead of , depending on region)
+    const delimiter = lines[0].includes(';') ? ';' : ',';
+    
+    const headers = lines[0].split(delimiter).map((h: string) => h.trim().toLowerCase());
     
     // allow 'password' to be optional as a header if we fall back, but 'username' is required
     const requiredHeaders = ['name', 'username', 'position', 'subbagian'];
@@ -35,7 +38,7 @@ export async function POST(req: Request) {
 
     // Parse rows
     for (let i = 1; i < lines.length; i++) {
-      const values = lines[i].split(',').map((v: string) => v.trim());
+      const values = lines[i].split(delimiter).map((v: string) => v.trim());
       const rowData: Record<string, string> = {};
       
       headers.forEach((header: string, index: number) => {
