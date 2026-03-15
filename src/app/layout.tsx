@@ -31,8 +31,9 @@ export default function RootLayout({
         style={{ backgroundColor: '#f9fafb', minHeight: '100vh', margin: 0 }}
       >
         <UserProvider>
-          <Navbar />
-          {children}
+          <Navbar>
+            {children}
+          </Navbar>
         </UserProvider>
       </body>
     </html>

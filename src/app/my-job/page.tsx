@@ -100,6 +100,22 @@ export default function MyJobPage() {
     setSortConfig({ key, direction });
   };
 
+  const handleDeleteTask = async (taskId: string, title: string) => {
+    if (!confirm(`Are you sure you want to delete task "${title}"? This cannot be undone.`)) return;
+    try {
+      const res = await fetch(`/api/tasks/${taskId}`, { method: 'DELETE' });
+      if (res.ok) {
+        setTasks(tasks.filter(t => t.id !== taskId));
+        alert('Task deleted successfully');
+      } else {
+        const error = await res.json();
+        alert('Failed to delete task: ' + error.message);
+      }
+    } catch (err) {
+      alert('Network error while deleting task');
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -214,6 +230,20 @@ export default function MyJobPage() {
                       <a href={task.assignmentLetterUrl} target="_blank" className={styles.actionBtn}>
                         Surat Tugas
                       </a>
+                    )}
+                    {(currentUser.role.includes('Admin') || (currentUser.role.includes('Ketua Tim') && task.ketuaTimId === currentUser.id)) && (
+                      <>
+                        <Link href={`/my-job/${task.id}/edit`} className={styles.actionBtn} style={{background: '#f59e0b', color: '#fff', border: 'none'}}>
+                          Edit
+                        </Link>
+                        <button 
+                          onClick={() => handleDeleteTask(task.id, task.title)}
+                          className={styles.actionBtn}
+                          style={{background: '#ef4444', color: '#fff', border: 'none'}}
+                        >
+                          Delete
+                        </button>
+                      </>
                     )}
                   </div>
                 </td>

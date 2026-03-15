@@ -12,8 +12,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'No CSV data provided' }, { status: 400 });
     }
 
-    // Basic CSV parsing
-    const lines = csvData.split('\n').map((line: string) => line.trim()).filter(Boolean);
+    // Basic CSV parsing and BOM stripping
+    const lines = csvData.replace(/^\uFEFF/, '').split('\n').map((line: string) => line.trim()).filter(Boolean);
     if (lines.length < 2) {
       return NextResponse.json({ message: 'CSV must contain headers and at least one row' }, { status: 400 });
     }

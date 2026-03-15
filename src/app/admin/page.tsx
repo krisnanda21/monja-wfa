@@ -60,7 +60,7 @@ export default function AdminDashboard() {
     }
   };
 
-  const roleOptions = ['Ketua Tim', 'Dalnis', 'Subkoordinator', 'Koordinator', 'Assesor Utama', 'Admin'];
+  const roleOptions = ['Anggota Tim', 'Ketua Tim', 'Dalnis', 'Subkoordinator', 'Koordinator', 'Assesor Utama', 'Admin'];
 
   // Only allow admin to view this directly, mock a check
   if (currentUser?.role !== "Admin") {

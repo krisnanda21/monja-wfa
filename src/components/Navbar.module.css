@@ -1,94 +1,91 @@
-.navbar {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  position: sticky;
+/* Sidebar Layout Styles */
+
+.sidebar {
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  background: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  transition: transform 0.3s ease;
   font-family: var(--font-geist-sans), sans-serif;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.02);
 }
 
-.navContainer {
-  max-width: 1200px;
-  margin: 0 auto;
+.sidebarHeader {
+  padding: 25px 20px;
+  border-bottom: 1px solid #f1f5f9;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 70px;
-  padding: 0 20px;
+  gap: 12px;
+  cursor: pointer;
+  background: #ffffff;
 }
 
-.logo a {
+.brandText {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #111;
-  text-decoration: none;
-  background: linear-gradient(135deg, #0070f3, #00c6ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.logoIcon {
-  -webkit-text-fill-color: initial;
-}
-
-.navLinks {
-  display: flex;
-  gap: 30px;
-}
-
-.notificationHeader {
-  padding: 16px;
-  border-bottom: 1px solid #eee;
-  font-weight: 600;
+.brandTitle {
   font-size: 1.05rem;
-  color: #000;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.brandSubtitle {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #64748b;
+  line-height: 1.2;
+}
+
+.sidebarNav {
+  flex: 1;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
 }
 
 .navLink {
-  color: #555;
+  color: #475569;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.05rem;
-  transition: color 0.2s ease, transform 0.2s ease;
-  position: relative;
+  font-size: 1.0rem;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: block;
 }
 
 .navLink:hover {
+  background: #f8fafc;
   color: #0070f3;
-  transform: translateY(-1px);
 }
 
 .navLink.active {
+  background: #eff6ff;
   color: #0070f3;
   font-weight: 600;
 }
 
-.navLink.active::after {
-  content: '';
-  position: absolute;
-  bottom: -25px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background-color: #0070f3;
-  border-radius: 3px 3px 0 0;
-}
-
-.userProfile {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.sidebarFooter {
+  padding: 20px;
+  border-top: 1px solid #f1f5f9;
+  background: #fafaf9;
 }
 
 .userInfo {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
 }
 
 .userName {
@@ -103,6 +100,117 @@
   font-weight: 500;
 }
 
+/* Topbar Styles for Notif & Logout */
+.topbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 280px; /* offset by sidebar */
+  height: 70px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 25px;
+  z-index: 990;
+  pointer-events: none; /* Let clicks pass through empty space */
+}
+
+.topbarRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  pointer-events: auto; /* clickable */
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border: 1px solid #f1f5f9;
+}
+
+.logoutBtn {
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #0f172a;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+  background: #f1f5f9;
+}
+
+/* Main Content Wrapper */
+.mainContent {
+  margin-left: 280px; 
+  transition: margin-left 0.3s ease;
+  padding: 20px;
+  padding-top: 80px; /* Space for absolute floating topbar if content goes behind it */
+  min-height: 100vh;
+}
+
+/* Mobile Toggle */
+.mobileToggle {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 15px;
+  z-index: 999;
+  background: #fff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.mobileOverlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 995;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Mobile Media Query */
+@media (max-width: 868px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .mainContent {
+    margin-left: 0;
+    padding-top: 70px; /* Space for the floating toggle */
+  }
+  .topbar {
+    left: 0;
+    padding: 0 15px;
+    height: 60px;
+    top: 5px;
+  }
+  .topbarRight {
+    padding: 6px 12px;
+  }
+  .mobileToggle {
+    display: block;
+  }
+  .mobileOverlay.open {
+    display: block;
+    opacity: 1;
+  }
+}
+
+/* Notifications Badge & Dropdown */
 .badge {
   position: absolute;
   top: -5px;
@@ -123,7 +231,7 @@
 .notifDropdown {
   position: absolute;
   top: 40px;
-  right: -50px;
+  right: -10px;
   width: 300px;
   background: white;
   border: 1px solid #eaeaea;
